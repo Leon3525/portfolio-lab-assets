@@ -1,0 +1,4 @@
+In an educational flashcard component, the images serve as visual supplements to the vocabulary terms.
+⚬	If the card flip already defines the term in detail, repeating the definition in the alt tag is redundant.
+⚬	If the image is purely an illustration of the word right below it, the image is considered decorative contextually, and an empty alt="" tag is often the best practice so screen readers skip straight to the term name.
+⚬	If the image shows a specific visual technique or subject that adds unique context (e.g., specific artist artwork like Olafur Eliasson), the alt text should describe what is visually shown, not restate the term title.

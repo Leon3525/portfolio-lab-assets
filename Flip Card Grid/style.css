@@ -1,0 +1,114 @@
+/* --------------------------------------------------
+   LMS Rigid Frame Constraints (900x640 Target Viewport)
+-------------------------------------------------- */
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevents outer scrollbars inside the LMS iframe */
+}
+
+.lms-frame-container {
+  width: 900px;
+  height: fit-content;
+  max-width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  /* Updated: Slightly rounder outer border radius */
+  border-radius: 1rem; 
+  overflow: hidden; /* Ensures child elements conform to the rounded corners */
+}
+
+/* Custom Scrollbar for Smooth LMS Experience */
+.card-body.overflow-y-auto::-webkit-scrollbar {
+  padding-bottom: 2rem !important;
+  width: 8px;
+}
+.card-body.overflow-y-auto::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.card-body.overflow-y-auto::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+/* --------------------------------------------------
+   Interactive 3D Flip Card Component
+-------------------------------------------------- */
+
+.flip-card {
+  background-color: transparent;
+  height: 220px;
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+/* Trigger 3D Rotation via Hover, Touch Class, or Focus */
+.flip-card:hover .flip-card-inner,
+.flip-card.is-flipped .flip-card-inner,
+.flip-card-button:focus-visible ~ .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 0.5rem; /* Cards maintain 8px radius */
+}
+
+.flip-card-front {
+  background-color: #212529;
+}
+
+.flip-card-front img.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+/* Dark gradient overlay behind white card titles for high contrast */
+.bg-overlay {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.3) 60%, rgba(0, 0, 0, 0) 100%);
+  border-radius: 0.5rem;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+  background-color: #0b5ed7;
+}
+
+/* Transparent Overlay Button to Capture Screen Reader & Keyboard Focus */
+.flip-card-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+/* Highlight Focus State for Keyboard Users */
+.flip-card-button:focus-visible {
+  outline: none;
+  border-color: #ffc107;
+  box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.5);
+}
